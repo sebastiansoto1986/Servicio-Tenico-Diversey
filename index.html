@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Servicio Técnico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            padding: 2rem;
+        }
+        .form-section, .docs-section {
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        input, button, textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Portal de Servicio Técnico</h1>
+        <p>Ayuda al cliente con soporte técnico, documentos y contacto directo.</p>
+    </header>
+    <main>
+        <!-- Formulario de Contacto -->
+        <section class="form-section">
+            <h2>Solicitar Ayuda Personalizada</h2>
+            <form id="contactForm">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" placeholder="Tu nombre" required>
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" placeholder="Tu correo" required>
+
+                <label for="message">Descripción del problema:</label>
+                <textarea id="message" placeholder="Describe tu problema" rows="5" required></textarea>
+
+                <button type="submit">Enviar Solicitud</button>
+            </form>
+        </section>
+
+        <!-- Documentos en Línea -->
+        <section class="docs-section">
+            <h2>Documentos Técnicos</h2>
+            <p>Descarga fichas técnicas y hojas de seguridad:</p>
+            <ul id="docList">
+                <!-- Los documentos se cargarán dinámicamente -->
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        // Simulación de documentos
+        const documents = [
+            { name: 'Ficha Técnica 1', url: '#' },
+            { name: 'Hoja de Seguridad 1', url: '#' },
+            { name: 'Manual de Usuario', url: '#' }
+        ];
+
+        // Cargar documentos dinámicamente
+        const docList = document.getElementById('docList');
+        documents.forEach(doc => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.textContent = doc.name;
+            a.href = doc.url;
+            a.target = '_blank';
+            li.appendChild(a);
+            docList.appendChild(li);
+        });
+
+        // Manejo del formulario de contacto
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Guardar los datos (puedes reemplazar esto con una llamada a un backend o Firebase)
+            console.log('Solicitud enviada:', { name, email, message });
+
+            alert('Tu solicitud ha sido enviada con éxito. Nos pondremos en contacto contigo pronto.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
